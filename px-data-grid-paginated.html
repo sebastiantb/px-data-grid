@@ -980,9 +980,20 @@ limitations under the License.
 
         ready() {
           super.ready();
-          this._resolvePxDataGrid();
+           if (this._pxDataGrid === undefined) {
+             if(!this.shadowRoot){
+              console.log('shadowroot came null, executing connected callback manually');
+              connectedCallback();
+             }
+            this._pxDataGrid = this.shadowRoot.querySelector('px-data-grid');
+          }
+          //this._resolvePxDataGrid();
         }
 
+        connectedCallback() {
+          super.connectedCallback();
+          console.log('connectedcallback called');
+        }
         _resolvePxDataGrid() {
           if (this._pxDataGrid === undefined) {
             this._pxDataGrid = this.shadowRoot.querySelector('px-data-grid');
