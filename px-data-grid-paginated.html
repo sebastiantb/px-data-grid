@@ -983,7 +983,9 @@ limitations under the License.
            if (this._pxDataGrid === undefined) {
              if(!this.shadowRoot){
               console.log('shadowroot came null, executing connected callback manually');
-              super.connectedCallback();
+              this.attachShadow({
+                 mode: "open"
+               });
              }
             this._pxDataGrid = this.shadowRoot.querySelector('px-data-grid');
           }
